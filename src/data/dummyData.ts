@@ -1,4 +1,4 @@
-import { Member, MemberRole, Notice, Event, DynamicForm, FormResponse, EventRegistration, Publication, Activity } from "../types";
+import { Member, MemberRole, Notice, Event, DynamicForm, FormResponse, EventRegistration, Publication, Activity, Post, Comment, Transaction } from "../types";
 
 export const dummyMembers: Member[] = [
   {
@@ -314,5 +314,108 @@ export const dummyActivities: Activity[] = [
     date: "2024-06-15",
     type: 'Contest',
     status: 'Draft'
+  }
+];
+
+export const dummyTransactions: Transaction[] = [
+  {
+    id: "t1",
+    type: "Income",
+    category: "Member Fee",
+    amount: 5000,
+    date: "2024-01-15",
+    description: "Annual membership fee collection - Jan Batch",
+    status: "Completed"
+  },
+  {
+    id: "t2",
+    type: "Income",
+    category: "Event Registration",
+    amount: 12500,
+    date: "2024-02-10",
+    description: "Registration fees for Biometric Workshop",
+    status: "Completed"
+  },
+  {
+    id: "t3",
+    type: "Expense",
+    category: "Venue",
+    amount: 3000,
+    date: "2024-02-08",
+    description: "Auditorium booking for seminar",
+    status: "Completed"
+  },
+  {
+    id: "t4",
+    type: "Expense",
+    category: "Marketing",
+    amount: 1500,
+    date: "2024-02-05",
+    description: "Social media ads and poster printing",
+    status: "Completed"
+  },
+  {
+    id: "t5",
+    type: "Income",
+    category: "Sponsorship",
+    amount: 20000,
+    date: "2024-03-01",
+    description: "Main sponsor payment for App Contest",
+    status: "Completed"
+  },
+  {
+    id: "t6",
+    type: "Expense",
+    category: "Equipment",
+    amount: 8500,
+    date: "2024-03-10",
+    description: "Webcam and audio gear for club room",
+    status: "Completed"
+  }
+];
+
+export const dummyPosts: Post[] = [
+  {
+    id: "p1",
+    userId: "1",
+    userName: "Jahidul Hassan",
+    title: "Excited for the Biometric Workshop!",
+    content: "Can't wait to see all the advanced security protocols in action. Who else is coming?",
+    createdAt: "2024-05-15T10:00:00Z",
+    isHidden: false,
+    likesCount: 12,
+    commentsCount: 2
+  },
+  {
+    id: "p2",
+    userId: "2",
+    userName: "Sarah Ahmed",
+    title: "Seeking help with UI design",
+    content: "Working on a new project and looking for some feedback on my layout. Any experts here?",
+    createdAt: "2024-05-16T14:30:00Z",
+    isHidden: false,
+    likesCount: 5,
+    commentsCount: 3
+  }
+];
+
+export const dummyComments: Comment[] = [
+  {
+    id: "c1",
+    postId: "p1",
+    userId: "3",
+    userName: "Tanvir Rahman",
+    content: "I'll be there! Really interested in the fingerprint auth section.",
+    createdAt: "2024-05-15T11:00:00Z",
+    isHidden: false
+  },
+  {
+    id: "c2",
+    postId: "p1",
+    userId: "4",
+    userName: "Maliha Islam",
+    content: "Count me in too! Just registered.",
+    createdAt: "2024-05-15T12:30:00Z",
+    isHidden: false
   }
 ];

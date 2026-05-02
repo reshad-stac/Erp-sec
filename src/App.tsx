@@ -13,6 +13,9 @@ import EventIntelligencePage from './pages/EventIntelligencePage';
 import EventRegistrantsPage from './pages/EventRegistrantsPage';
 import ActivitiesPage from './pages/ActivitiesPage';
 import PublicationsPage from './pages/PublicationsPage';
+import CommunityPostsPage from './pages/CommunityPostsPage';
+import PostDetailPage from './pages/PostDetailPage';
+import AccountsPage from './pages/AccountsPage';
 
 export default function App() {
   return (
@@ -30,6 +33,9 @@ export default function App() {
           <Route path="/admin/forms/:id/responses" element={<FormResponseDetailPage />} />
           <Route path="/admin/infos/activities" element={<ActivitiesPage />} />
           <Route path="/admin/infos/publications" element={<PublicationsPage />} />
+          <Route path="/admin/community/posts" element={<CommunityPostsPage />} />
+          <Route path="/admin/community/posts/:id" element={<PostDetailPage />} />
+          <Route path="/admin/accounts" element={<AccountsPage />} />
           <Route path="/events/:id" element={<EventDetailPage />} />
         </Routes>
       </Layout>

@@ -89,6 +89,38 @@ export interface Activity {
   status: 'Completed' | 'Draft';
 }
 
+export interface Comment {
+  id: string;
+  postId: string;
+  userId: string;
+  userName: string;
+  content: string;
+  createdAt: string;
+  isHidden: boolean;
+}
+
+export interface Post {
+  id: string;
+  userId: string;
+  userName: string;
+  title: string;
+  content: string;
+  createdAt: string;
+  isHidden: boolean;
+  likesCount: number;
+  commentsCount: number;
+}
+
+export interface Transaction {
+  id: string;
+  type: 'Income' | 'Expense';
+  category: 'Member Fee' | 'Event Registration' | 'Sponsorship' | 'Venue' | 'Marketing' | 'Equipment' | 'Miscellaneous';
+  amount: number;
+  date: string;
+  description: string;
+  status: 'Completed' | 'Pending';
+}
+
 export interface Event {
   id: string;
   title: string;

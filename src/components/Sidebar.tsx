@@ -13,7 +13,9 @@ import {
   ChevronDown,
   Info,
   Activity as ActivityIcon,
-  BookOpen
+  BookOpen,
+  MessageSquare as CommunityIcon,
+  Briefcase
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -22,6 +24,7 @@ const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
   { icon: Users, label: 'Members', path: '/admin/members' },
   { icon: Bell, label: 'Notices', path: '/admin/notices' },
+  { icon: Briefcase, label: 'Accounts', path: '/admin/accounts' },
 ];
 
 const eventItems = [
@@ -39,12 +42,17 @@ const infoItems = [
   { icon: BookOpen, label: 'Publications', path: '/admin/infos/publications' },
 ];
 
+const communityItems = [
+  { icon: CommunityIcon, label: 'Post Moderation', path: '/admin/community/posts' },
+];
+
 export function Sidebar() {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const [formsOpen, setFormsOpen] = useState(location.pathname.startsWith('/admin/forms'));
   const [eventsOpen, setEventsOpen] = useState(location.pathname.startsWith('/admin/events'));
   const [infosOpen, setInfosOpen] = useState(location.pathname.startsWith('/admin/infos'));
+  const [communityOpen, setCommunityOpen] = useState(location.pathname.startsWith('/admin/community'));
 
   return (
     <motion.aside 
@@ -275,6 +283,65 @@ export function Sidebar() {
                 className="overflow-hidden space-y-1 pl-9"
               >
                 {infoItems.map((item) => {
+                  const isActive = location.pathname === item.path;
+                  return (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className={cn(
+                        "flex items-center gap-3 px-3 py-2 rounded-lg transition-all text-xs font-bold uppercase tracking-widest whitespace-nowrap",
+                        isActive 
+                          ? "text-indigo-600" 
+                          : "text-slate-400 hover:text-slate-600"
+                      )}
+                    >
+                      <span>{item.label}</span>
+                    </Link>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Community Dropdown */}
+        <div className="space-y-1">
+          <button
+            onClick={() => !collapsed && setCommunityOpen(!communityOpen)}
+            title={collapsed ? "Community" : undefined}
+            className={cn(
+              "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group text-sm font-medium",
+              location.pathname.startsWith('/admin/community') 
+                ? "bg-slate-50 text-slate-900" 
+                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
+              collapsed && "justify-center px-0"
+            )}
+          >
+            <CommunityIcon size={18} className={cn(location.pathname.startsWith('/admin/community') ? "text-indigo-600" : "text-slate-400 group-hover:text-slate-600")} />
+            {!collapsed && (
+              <>
+                <span className="whitespace-nowrap">Community</span>
+                <ChevronDown 
+                  size={14} 
+                  className={cn(
+                    "ml-auto transition-transform duration-200 text-slate-400 shrink-0",
+                    communityOpen && "rotate-180"
+                  )} 
+                />
+              </>
+            )}
+          </button>
+
+          <AnimatePresence>
+            {communityOpen && !collapsed && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden space-y-1 pl-9"
+              >
+                {communityItems.map((item) => {
                   const isActive = location.pathname === item.path;
                   return (
                     <Link
